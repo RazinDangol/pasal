@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class= 'table-responsive'>
+    <h2>List of blogs</h2>
+
+    <table class ='table table-bordered table-hover'>
+        <tr>
+            <th class='bg-primary'>Name</th>
+
+            <th class='bg-primary'>Code</th>
+            <th class='bg-primary'>Price</th>
+            <th class='bg-primary'>Available Quantity</th>
+            <th class='bg-primary'>Added Date</th>
+            <th class='bg-primary'>Updated Date</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{product.product_name}}</td>
+            <td>{{product.product_code}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.available_quantity}}</td>
+            <td>{{product.created_date}}</td>
+            <td>{{product.update_date}}</td>
+
+            </tr>
+    {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
