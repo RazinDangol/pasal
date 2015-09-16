@@ -5,4 +5,4 @@ from .models import Product,ProductType
 
 def show(request):
     products=Product.objects.all()
-    return render_to_response('show.html',{'products':products})
+    return render_to_response('products.html',{'products':products})

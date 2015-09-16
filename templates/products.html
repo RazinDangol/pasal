@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{%block title%}
+<title>Products</title>
+{%endblock%}
+{% block main %}
+<div class='container'>
+    <h1>List of Products</h1>
+    <div class='well well-lg'>
+    {% for product in products %}
+        <div class='well'>
+            <h2>{{product.product_name}}</h2>
+            <strong>Name:</strong>{{product.product_name}}
+            <br>
+            <strong>Type:</strong>{{product.product_type}}
+            <br>
+            <strong>Code:</strong>{{product.product_code}}
+            <br>
+            <strong>Price:</strong>{{product.price}}
+            <br>
+            <strong>Available Quantity</strong>{{product.available_quantity}}
+            <br>
+            <strong>Added Date:</strong>{{product.created_date}}
+            <br>
+            <strong>Updated Date:</strong>{{product.update_date}}
+        </div>
+    {%endfor%}
+    </div>
+</div>    
+    }
+{% endblock %}

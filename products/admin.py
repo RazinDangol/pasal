@@ -13,7 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
 
     def action_link(self,obj):
         edit_link=('<a href="%d">Edit</a>' % obj.id)
-        delete_link=('<a href="delete/%d">Delete</a>'  % obj.id)
+        delete_link=('<a href="%d/delete">Delete</a>'  % obj.id)
         return edit_link + " " + delete_link
     action_link.allow_tags=True
 
