@@ -3,28 +3,43 @@
 <title>Products</title>
 {%endblock%}
 {% block main %}
+<style>
+.test{
+    display:inline-block;
+    width:43%;
+   
+}
+</style>
+{% load staticfiles %}
 <div class='container'>
     <h1>List of Products</h1>
-    <div class='well well-lg'>
+    
     {% for product in products %}
-        <div class='well'>
-            <h2>{{product.product_name}}</h2>
-            <strong>Name:</strong>{{product.product_name}}
-            <br>
-            <strong>Type:</strong>{{product.product_type}}
-            <br>
-            <strong>Code:</strong>{{product.product_code}}
-            <br>
-            <strong>Price:</strong>{{product.price}}
-            <br>
-            <strong>Available Quantity</strong>{{product.available_quantity}}
-            <br>
-            <strong>Added Date:</strong>{{product.created_date}}
-            <br>
-            <strong>Updated Date:</strong>{{product.update_date}}
+    <div class='well'>
+        <div class ='test'>
+        <ul class='list-group'>
+            <li class='list-group-item'><h2>{{product.product_name}}</h2></li>
+            <li class='list-group-item'><strong>Name:</strong><span class='badge'>{{product.product_name}}</span></li>
+            <li class='list-group-item'><strong>Type:</strong><span class='badge'>{{product.product_type}}</span></li>
+            <li class='list-group-item'><strong>Code:</strong><span class='badge'>{{product.product_code}}</span></li>
+           
+            <li class='list-group-item'><strong>Price:</strong><span class='badge'>{{product.price}}</span></li>
+            
+            <li class='list-group-item'><strong>Available Quantity:</strong><span class='badge'>{{product.available_quantity}}</span></li>
+            <li class='list-group-item'><strong>Added Date:</strong><span class='badge'>{{product.created_date}}</span></li>
+            
+            <li class='list-group-item'><strong>Updated Date:</strong><span class='badge'>{{product.updated_date}}</span></li>
+        </ul>
+        
+       </div>
+
+        <div class='test' style='width:50%; height:300px'>
+         <img src='{% static 'samsung.png' %}' align='right' width='200' height='100' class='img-thumbnail' ,float='right'>
+          
+         </div>
         </div>
     {%endfor%}
-    </div>
+   
 </div>    
-    }
+</body>
 {% endblock %}

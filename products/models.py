@@ -4,7 +4,7 @@ from django.db import models
 
 
 class ProductType(models.Model):
-    product_type = models.CharField(max_length=30)
+    product_type = models.CharField(max_length=30,unique=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
@@ -15,7 +15,7 @@ class ProductType(models.Model):
 class Product(models.Model):
     product_type = models.ForeignKey(ProductType)
     product_name = models.CharField(max_length=30)
-    product_code = models.IntegerField()
+    product_code = models.IntegerField(unique=True)
     price = models.IntegerField()
     available_quantity = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)

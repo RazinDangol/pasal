@@ -1,8 +1,8 @@
 """pasal URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
+    https://docs.djangoproject.com/en/1.8/topics/h/tp/ur/s/
+Ex/mples:/
 Function views
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^products/','products.views.show'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
