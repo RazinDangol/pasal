@@ -11,7 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('product_name', 'product_type_link', 'product_code',
                     'price', 'available_quantity', 'created_date', 'updated_date','action_link')
     def product_type_link(self,obj):
-        product_type=('<a href="/admin/products/producttype/{id}">{type}</a>'.format(id=obj.id,type=obj.product_type))
+        product_type=('<a href="/admin/products/producttype/{id}">{type}</a>'.format(id=obj.product_type.id,type=obj.product_type))
         return product_type
     product_type_link.allow_tags=True
 
