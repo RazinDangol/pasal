@@ -4,19 +4,15 @@ Products
 {%endblock%}
 {% block main %}
 <style>
-.test{
-    display:inline-block;
-    width:43%;
-   
-}
+
 </style>
 {% load staticfiles %}
 <div class='container'>
     <h1>List of Products</h1>
     
     {% for product in products %}
-    <div class='well'>
-        <div class ='test'>
+    <div class='row well'>
+        <div class ='col-md-6'>
         <ul class='list-group'>
             <li class='list-group-item'><h2>{{product.product_name}}</h2></li>
             <li class='list-group-item'><strong>Name:</strong><span class='badge'>{{product.product_name}}</span></li>
@@ -33,8 +29,8 @@ Products
         
        </div>
 
-        <div class='test' style='width:50%; height:300px'>
-         <img src='{{product.primary_image.url}}' align='right' width='200' height='100' class='img-thumbnail' ,float='right'>
+        <div class='col-md-6'>
+         <img src='{{product.primary_image.url}}' align='right' width=75% height='75%' class='img-thumbnail' ,float='right'>
           
          </div>
         </div>
