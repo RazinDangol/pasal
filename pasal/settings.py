@@ -56,7 +56,7 @@ ROOT_URLCONF = 'pasal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"templates")],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,6 +101,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=(os.path.join(BASE_DIR,'static',
-    ),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static',
+                                 ),
+                )
+
+MEDIA_ROOT = (os.path.join(BASE_DIR,'media'))
+MEDIA_URL ='/media/'
+ADMIN_MEDIA_PREFIX = os.path.join(MEDIA_URL,'admin/')

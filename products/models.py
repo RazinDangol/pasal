@@ -15,8 +15,9 @@ class ProductType(models.Model):
 class Product(models.Model):
     product_type = models.ForeignKey(ProductType)
     product_name = models.CharField(max_length=30)
-    product_code = models.IntegerField(unique=True)
-    price = models.IntegerField()
+    product_code = models.CharField(max_length=30,unique=True)
+    primary_image= models.ImageField(upload_to='Images')
+    price = models.DecimalField(max_digits=9,decimal_places=2)
     available_quantity = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)

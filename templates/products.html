@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {%block title%}
-<title>Products</title>
+Products
 {%endblock%}
 {% block main %}
 <style>
@@ -34,7 +34,7 @@
        </div>
 
         <div class='test' style='width:50%; height:300px'>
-         <img src='{% static 'samsung.png' %}' align='right' width='200' height='100' class='img-thumbnail' ,float='right'>
+         <img src='{{product.primary_image.url}}' align='right' width='200' height='100' class='img-thumbnail' ,float='right'>
           
          </div>
         </div>
