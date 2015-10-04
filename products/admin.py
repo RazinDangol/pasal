@@ -1,20 +1,20 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Product
-from .models import ProductType
+from .models import Product, Category, Customer, Sales
 
 
 class ProductAdmin(admin.ModelAdmin):
-    fields = ('product_name', 'product_type', 'primary_image',
+    fields = ('product_name', 'category', 'primary_image',
               'product_code', 'price', 'available_quantity',)
-    list_display = ('product_name', 'product_type_link', 'product_code',
+    list_display = ('product_name', 'category_link', 'product_code',
                     'price', 'available_quantity', 'created_date', 'updated_date', 'action_link')
-
-    def product_type_link(self, obj):
-        product_type = ('<a href="/admin/products/producttype/{id}">{type}</a>'.format(id=obj.product_type.id, type=obj.product_type))
-        return product_type
-    product_type_link.allow_tags = True
+    search_fields=['product_name',]
+    def category_link(self, obj):
+        category = (
+            '<a href="/admin/products/category/{id}">{type}</a>'.format(id=obj.category.id, type=obj.category))
+        return category
+    category_link.allow_tags = True
 
     def action_link(self, obj):
         edit_link = ('<a href="%d">Edit</a>' % obj.id)
@@ -23,9 +23,12 @@ class ProductAdmin(admin.ModelAdmin):
     action_link.allow_tags = True
 
 
-class ProductTypeAdmin(admin.ModelAdmin):
-    fields = ('product_type',)
-    list_display = ('product_type', 'created_date', 'updated_date')
+class CategoryAdmin(admin.ModelAdmin):
+    fields = ('category_name', 'parent')
+    list_display = ('category_name', 'created_date', 'updated_date', 'parent')
+
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductType, ProductTypeAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Customer)
+admin.site.register(Sales)
