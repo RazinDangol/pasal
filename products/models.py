@@ -4,6 +4,7 @@ import os
 from io import BytesIO
 from PIL import Image
 import re
+
 from django.core.exceptions import ValidationError
 # Create your models here.
 
@@ -16,7 +17,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
-
+    class Meta:
+        verbose_name_plural='Categories'
 
 class Product(models.Model):
     product_name = models.CharField(max_length=30)
@@ -65,9 +67,8 @@ class Product(models.Model):
 def number_validator(number):
     if len(str(number)) < 10:
         raise ValidationError('{} is not a valid mobile number'.format(number))
-    elif not re.match('^98',str(number)):
+    elif not re.match('^9[78][0145]',str(number)):
         raise ValidationError('{} is not a valid mobile number of Nepal'.format(number))
-
 
 class Customer(models.Model):
     full_name = models.CharField(max_length=40)
@@ -89,3 +90,5 @@ class Sales(models.Model):
 
     def __str__(self):
         return str(self.sales_date)
+    class Meta:
+        verbose_name_plural='Sales'
