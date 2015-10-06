@@ -17,14 +17,17 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+
     class Meta:
-        verbose_name_plural='Categories'
+        verbose_name_plural = 'Categories'
+
 
 class Product(models.Model):
     product_name = models.CharField(max_length=30)
     category = models.ForeignKey(Category)
     product_code = models.CharField(max_length=30, unique=True)
-    primary_image = models.ImageField(upload_to=os.path.join('Images','products'))
+    primary_image = models.ImageField(
+        upload_to=os.path.join('Images', 'products'))
     primary_thumbnail = models.ImageField(blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     available_quantity = models.IntegerField()
@@ -67,8 +70,10 @@ class Product(models.Model):
 def number_validator(number):
     if len(str(number)) < 10:
         raise ValidationError('{} is not a valid mobile number'.format(number))
-    elif not re.match('^9[78][0145]',str(number)):
-        raise ValidationError('{} is not a valid mobile number of Nepal'.format(number))
+    elif not re.match('^9[78][0145]', str(number)):
+        raise ValidationError(
+            '{} is not a valid mobile number of Nepal'.format(number))
+
 
 class Customer(models.Model):
     full_name = models.CharField(max_length=40)
@@ -81,6 +86,11 @@ class Customer(models.Model):
     def __str__(self):
         return self.full_name
 
+class Review(models.Model):
+    product=models.ForeignKey(Product)
+    customer=models.ForeignKey(Customer)
+    review=models.TextField()
+    
 
 class Sales(models.Model):
     product = models.ForeignKey(Product)
@@ -90,5 +100,6 @@ class Sales(models.Model):
 
     def __str__(self):
         return str(self.sales_date)
+
     class Meta:
-        verbose_name_plural='Sales'
+        verbose_name_plural = 'Sales'

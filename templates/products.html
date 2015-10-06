@@ -2,14 +2,22 @@
 {%block title%}
 Products
 {%endblock%}
+{%block nav%}
+    <li><a href="#">Home</a></li>
+    <li><a href="/category">Categories</a></li>
+    <li class="active"><a href="/products">Products</a></li> 
+    <li><a href="/customer">Customers</a></li>
+    <li><a href='sales'>Sales</a></li> 
+{%endblock%}
 {% block main %}
 <style>
 
 </style>
 {% load staticfiles %}
-<div class='container'>
+<div class='container-fluid'>
+    <div class='container'>
     <h1>List of Products</h1>
-    
+    </div>
     {% for product in products %}
     <div class='row well'>                                                                             
         <div class ='col-md-6'>

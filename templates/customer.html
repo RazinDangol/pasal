@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{% block title %}
+Customer Details
+{% endblock %}
+{% block nav%}
+<li><a href="#">Home</a></li>
+    <li><a href="/category">Categories</a></li>
+    <li><a href="/products">Products</a></li> 
+    <li class="active"><a href="/customer">Customers</a></li>
+    <li><a href='/sales'>Sales</a></li> 
+{%endblock%}
+{%block main%}
+<style>
+.test{
+	display: block;
+    margin-left: auto;
+    margin-right: auto ;
+}
+</style>
+<h2 style='text-align:center;'>List of Customers</h2>
+{%for customer in customers%}
+<div class='container'>
+<div class='col-md-6 well'>
+<img src='{{customer.profile_image.url}}' class='img-circle test' wodth='250' height="250" >
+<ul>
+<li class='test'><strong>Name:</strong>{{customer.full_name}}</li>
+<li class='test'><strong>Address:</strong> {{customer.address}}</li>
+<li class='test'><strong>Mobile:</strong> {{customer.mobile}}</li>
+
+</ul>
+</div>
+</div>
+{%endfor%}
+{%endblock%}

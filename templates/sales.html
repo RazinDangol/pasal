@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block title%}
+Sales
+{%endblock%}
+{%block nav%}
+<li><a href="#">Home</a></li>
+    <li><a href="/category">Categories</a></li>
+    <li><a href="/products">Products</a></li> 
+    <li><a href="/customer">Customers</a></li>
+    <li class='active'><a href='/sales'>Sales</a></li> 
+{%endblock%}
+{%block main%}
+{%for sale in sales%}
+<ul>
+<li><strong>Product:</strong> {{sale.product}}</li>
+<li><strong>Customer:</strong> {{sale.customer}}</li>
+<li><strong>Quantity:</strong> {{sale.quantity}}</li>
+<li><Strong>Purchased on:</Strong> {{sale.sales_date}}</li>
+</ul>
+{%endfor%}
+{%endblock%}

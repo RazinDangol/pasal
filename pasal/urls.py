@@ -22,6 +22,10 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^products/', 'products.views.show'),
+    url(r'^category/','products.views.category'),
+    url(r'^customer/','products.views.customer'),
+    url(r'^sales/','products.views.sales'),
+
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
