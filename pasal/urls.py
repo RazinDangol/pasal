@@ -21,10 +21,12 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^products/', 'products.views.show'),
-    url(r'^category/','products.views.category'),
-    url(r'^customer/','products.views.customer'),
-    url(r'^sales/','products.views.sales'),
+    url(r'^products/', 'products.views.show',name='products'),
+    url(r'^category/','products.views.category',name='category'),
+    url(r'^customer/','products.views.customer',name='customer'),
+    url(r'^sales/','products.views.sales',name='sales'),
+    url(r'^product/(?P<id>[0-9]+)/$','products.views.product_id',name='product-{}'.format(id)),
+    url(r'^signup/$','products.views.signup',name='signup')
 
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

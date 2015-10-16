@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{%block title%}
+Products
+{%endblock%}
+
+{% block body %}
+<style>
+
+</style>
+<div class='container-fluid'>
+    <div class='container'>
+    <h1>List of Products</h1>
+    </div>
+    <div class='row well'>
+    <div class='col-md-6'>
+         <img src='{{product.primary_image.url}}' align='left' width=75% height='75%' class='img-thumbnail' ,float='right'>
+          
+         </div>                                                                             
+        <div class ='col-md-6'>
+        <ul class='list-group'>
+            <li class='list-group-item'><h2>{{product.product_name}}</h2></li>
+            <li class='list-group-item'><strong>Name:</strong><span class='badge'>{{product.product_name}}</span></li>
+            <li class='list-group-item'><strong>Type:</strong><span class='badge'>{{product.category}}</span></li>
+            <li class='list-group-item'><strong>Code:</strong><span class='badge'>{{product.product_code}}</span></li>
+           
+            <li class='list-group-item'><strong>Price:</strong><span class='badge'>{{product.price}}</span></li>
+            
+            <li class='list-group-item'><strong>Available Quantity:</strong><span class='badge'>{{product.available_quantity}}</span></li>
+            <li class='list-group-item'><strong>Added Date:</strong><span class='badge'>{{product.created_date}}</span></li>
+            
+            <li class='list-group-item'><strong>Updated Date:</strong><span class='badge'>{{product.updated_date}}</span></li>
+        </ul>
+        
+       </div>
+
+        
+        </div>
+</div>
+<div class='row'>
+<div class='col-lg-6'>
+<div class ='panel panel-primary'>
+    <div class='panel-heading '>Reviews</div>
+        <div class='panel-body'>
+            {%if reviews|length == 0%}
+            <div class='col-md-6 well'>
+                <blockquote><p>No reviews yet</p><footer>Admin</footer></blockquote>
+            </div>
+            {%else%}
+                {% for review in reviews%}
+                <div class='col-lg-4 well'>
+        
+                    <blockquote><p>{{review.review}}</p><footer>{{review.customer|capfirst}}</footer></blockquote>
+                </div>
+                
+                {%endfor%}
+            {%endif%}
+            </div>  
+        </div>
+</div>
+</div>
+</div>
+</body>
+{% endblock %}

@@ -80,17 +80,22 @@ class Customer(models.Model):
     address = models.CharField(max_length=40)
     mobile = models.DecimalField(
         max_digits=10, decimal_places=0, validators=[number_validator])
+    email=models.EmailField(unique=True)
+    password=models.CharField(max_length=20)
     profile_image = models.ImageField(
-        upload_to=os.path.join('Images', 'customer'), verbose_name='Profile Picture')
+        upload_to=os.path.join('Images', 'customer'), verbose_name='Profile Picture',blank=True)
 
     def __str__(self):
         return self.full_name
 
+
 class Review(models.Model):
-    product=models.ForeignKey(Product)
-    customer=models.ForeignKey(Customer)
-    review=models.TextField()
-    
+    product = models.ForeignKey(Product)
+    customer = models.ForeignKey(Customer)
+    review = models.TextField()
+    def __str__(self):
+        return self.product.product_name
+
 
 class Sales(models.Model):
     product = models.ForeignKey(Product)

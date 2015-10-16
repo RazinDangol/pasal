@@ -1,15 +1,9 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 {%block title%}
 Products
 {%endblock%}
-{%block nav%}
-    <li><a href="#">Home</a></li>
-    <li><a href="/category">Categories</a></li>
-    <li class="active"><a href="/products">Products</a></li> 
-    <li><a href="/customer">Customers</a></li>
-    <li><a href='sales'>Sales</a></li> 
-{%endblock%}
-{% block main %}
+
+{% block body %}
 <style>
 
 </style>
@@ -22,7 +16,7 @@ Products
     <div class='row well'>                                                                             
         <div class ='col-md-6'>
         <ul class='list-group'>
-            <li class='list-group-item'><h2>{{product.product_name}}</h2></li>
+            <li class='list-group-item'><h2><a href='/product/{{product.id}}'>{{product.product_name}}</a></h2></li>
             <li class='list-group-item'><strong>Name:</strong><span class='badge'>{{product.product_name}}</span></li>
             <li class='list-group-item'><strong>Type:</strong><span class='badge'>{{product.category}}</span></li>
             <li class='list-group-item'><strong>Code:</strong><span class='badge'>{{product.product_code}}</span></li>
