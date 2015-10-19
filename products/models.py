@@ -6,6 +6,7 @@ from PIL import Image
 import re
 
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -76,7 +77,9 @@ def number_validator(number):
 
 
 class Customer(models.Model):
-    full_name = models.CharField(max_length=40)
+    username = models.CharField(max_length=40)
+    first_name = models.CharField(max_length=40)
+    last_name = models.CharField(max_length=40)
     address = models.CharField(max_length=40)
     mobile = models.DecimalField(
         max_digits=10, decimal_places=0, validators=[number_validator])

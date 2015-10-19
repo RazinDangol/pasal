@@ -26,7 +26,12 @@ urlpatterns = [
     url(r'^customer/','products.views.customer',name='customer'),
     url(r'^sales/','products.views.sales',name='sales'),
     url(r'^product/(?P<id>[0-9]+)/$','products.views.product_id',name='product-{}'.format(id)),
-    url(r'^signup/$','products.views.signup',name='signup')
+    url(r'^signup/$','products.views.signup',name='signup'),
+    url(r'^login/$','products.views.login',name='login'),
+    url(r'^login/success/','products.views.login_success',name='login_success'),
+    url(r'^login/invalid/','products.views.login_invalid',name='login_invalid'),
+    url(r'^login/disabled/','products.views.login_disabled',name='login_disabled'),
+    url(r'^signup/success/','products.views.signup_success',name='signup_success'),
 
         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

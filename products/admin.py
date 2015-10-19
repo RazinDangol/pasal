@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.contrib.auth.models import User
 # Register your models here.
 from .models import Product, Category, Customer, Sales, Review
 
@@ -28,6 +28,8 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category_name', 'created_date', 'updated_date', 'parent')
 
 
+class UserAdmin(admin.ModelAdmin):
+    pass
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Customer)

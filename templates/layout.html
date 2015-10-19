@@ -40,10 +40,16 @@
                         </ul><!--nav navbar-nav-->
 
                          <ul class='nav navbar-nav navbar-right'>
+                            {#The signup button should not appear in '/signup' url#}
+                            {% if not  '/signup' in request.get_full_path %}
                             <li>
                             <button type="button" class="btn navbar-btn btn-default" data-toggle="modal" data-target="#signup"><span class='glyphicon glyphicon-user'></span> SignUp</button></li>
-                            
+                            {%endif%}
+                            {#The login button should not appear in '/login' url#}
+                            {%if not '/login' in request.get_full_path %}
                             <li><button type="button" class="btn navbar-btn btn-default" data-toggle="modal" data-target="#login"><span class='glyphicon glyphicon-log-in'></span> Login</button></li>
+                            {%endif%}
+
                         </ul><!--nav navbar-nav navbar-right-->
                         
                         <form class='navbar-form navbar-right'>    
@@ -62,6 +68,9 @@
             </nav><!--Nav bar-->
           </div><!--Main container-->
 
+{#The login button should not appear in '/login' url#}
+        {%if not '/login/' in request.get_full_path %}
+        <!--LOGIN-->
         <div class='modal fade' id='login' role='dialog'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
@@ -71,14 +80,15 @@
                     </div><!--modal-header-->
 
                     <div class='modal-body'>
-                        <form class='form'>
-                        <div class='form-group'>
-                            <input type='text' placeholder='Email' class='form-control'>
+                        <form class='form' action='/login/' method='post'>
+                        {%csrf_token%}
+                            <div class='form-group'>
+                            <input type='text' placeholder='Username' class='form-control' name='username'>
                         </div>
                         <div class='form-group'>
-                            <input type='password' placeholder='Password' class='form-control'>
+                            <input type='password' placeholder='Password' class='form-control' name='password'>
                         </div>
-                        <button type='submit' class='btn'>Submit</button>
+                        <button type='submit' class='btn btn-default' value='Login'>Login</button>
                         </form>
                     </div><!--modal-body-->
 
@@ -87,7 +97,12 @@
 
             </div><!--modal-dialog-->
         </div><!--modal fade-->
+{%endif%}
 
+
+{#The signup button should not appear in '/signup' url#}
+{% if not  '/signup' in request.get_full_path %}
+<!--SIGNUP-->
  <div class='modal fade' id='signup' role='dialog'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
@@ -97,11 +112,16 @@
                     </div><!--modal-header-->
 
                     <div class='modal-body'>
-                        <form class='form' action='/signup/' method='post'>{%csrf_token%}
+                        <form class='form' action='/signup/' method='post' name='signup'>{%csrf_token%}
 
                         <div class='form-group'>
-                            <input type='text' placeholder='Full Name' class='form-control' name='full_name'>
+                            <input type='text' placeholder='First Name' class='form-control' name='first_name'>
                         </div>
+
+                        <div class='form-group'>
+                            <input type='text' placeholder='Last Name' class='form-control' name='last_name'>
+                        </div>
+
                         <div class='form-group'>
                             <input type='text' placeholder='Address' class='form-control' name='address'>
                         </div>
@@ -111,13 +131,21 @@
                         <div class='form-group'>
                             <input type='email' placeholder='Email' class='form-control' name='email'>
                         </div>
+
                         <div class='form-group'>
-                            <input type='password' placeholder='Password' class='form-control' name='password'>
+                            <input type='text' placeholder='Username' class='form-control' name='username'>
                         </div>
 
+                        <div class='form-group'>
+                            <input type='password' placeholder='Password' class='form-control' name='password1'>
+                        </div>
+                        
+                         <div class='form-group'>
+                            <input type='password' placeholder='Password Confirmation' class='form-control' name='password2'>
+                        </div>
                         
                         
-                        <button type='submit' class='btn' value='Signup'>Submit</button>
+                        <button type='submit' class='btn' value='Signup' onclick='CheckPassword(document.signup.password1,document.signup.password2)'>Submit</button>
                         </form>
                     </div><!--modal-body-->
 
@@ -125,6 +153,8 @@
 
             </div><!--modal-dialog-->
         </div><!--modal fade-->
+
+{%endif%}
 
 
 {%endblock%}
