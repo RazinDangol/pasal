@@ -9,7 +9,8 @@ class ProductAdmin(admin.ModelAdmin):
               'product_code', 'price', 'available_quantity',)
     list_display = ('product_name', 'category_link', 'product_code',
                     'price', 'available_quantity', 'created_date', 'updated_date', 'action_link')
-    search_fields=['product_name',]
+    search_fields = ['product_name', ]
+
     def category_link(self, obj):
         category = (
             '<a href="/admin/products/category/{id}">{type}</a>'.format(id=obj.category.id, type=obj.category))

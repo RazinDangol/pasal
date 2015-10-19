@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 # Create your views here.
 from .models import Product, Category, Customer, Sales, Review
@@ -18,17 +18,14 @@ login_form = Login()
 
 def show(request):
     products = Product.objects.all()
-
     return render(request, 'products.html', {'products': products, 'categories': categories, 'parent': parent, 'form': form, 'login': login_form})
 
 
 def category(request):
-
     return render(request, 'categories.html', {'categories': categories, 'parent': parent, 'form': form})
 
 
 def customer(request):
-
     customers = Customer.objects.all()
     return render(request, 'customer.html', {'customers': customers, 'categories': categories, 'parent': parent, 'form': form})
 
@@ -50,7 +47,6 @@ def signup(request):
         form = Signup(request.POST)
         if form.is_valid():
             form.save()
-
             return HttpResponseRedirect('/signup/success/')
     else:
         form = Signup()
@@ -62,31 +58,32 @@ def signup_success(request):
 
 
 def login(request):
-    
     if request.method == 'POST':
         login_form = Login(request.POST)
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
             user = auth.authenticate(username=username, password=password)
-            print(user)
             if user is not None:
                 if user.is_active:
-                    auth.login(request,user)
+                    auth.login(request, user)
                     return HttpResponseRedirect('/login/success')
                 else:
                     return HttpResponseRedirect('/login/disabled')
             else:
                 return HttpResponseRedirect('/login/invalid')
     else:
-            login_form=Login()
-            return render(request,'login.html',{'form':login_form})
+        login_form = Login()
+        return render(request, 'login.html', {'form': login_form})
+
 
 def login_success(request):
-	return HttpResponse('Successfully logged in')
+    return HttpResponse('Successfully logged in')
+
 
 def login_invalid(request):
-	return HttpResponse('Wrong username of password')
+    return HttpResponse('Wrong username of password')
+
 
 def login_disabled(request):
-	return HttpResponse('Sorry but your account is disabled')
+    return HttpResponse('Sorry but your account is disabled')
